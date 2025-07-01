@@ -44,32 +44,6 @@ A lightweight and customizable **Roblox GUI Library** written in Lua (Luau) for 
 
 ---
 
-## Installation
-
-1. **Copy the Script**:
-   - Copy the [provided Lua script](#) into a `LocalScript` in your Roblox game.
-   - Place the `LocalScript` under `StarterPlayerScripts` or another appropriate location in your game's hierarchy.
-
-2. **Dependencies**:
-   - The library relies on Roblox services: `TweenService`, `UserInputService`, `Players`, and `CoreGui`.
-   - No external dependencies are required.
-
-3. **Asset IDs**:
-   - The library uses `rbxassetid://3870695787` for UI elements. Ensure this asset is accessible or replace it with your own.
-
-```lua
--- Example placement in Roblox Studio
-local script = game:GetService("StarterPlayer").StarterPlayerScripts:FindFirstChild("GUILibrary")
-if not script then
-    script = Instance.new("LocalScript")
-    script.Name = "GUILibrary"
-    script.Parent = game:GetService("StarterPlayer").StarterPlayerScripts
-end
--- Paste the library code into the script
-```
-
----
-
 ## Usage
 
 ### Creating a Window
@@ -193,5 +167,3 @@ Creates a slider for selecting a value.
   - `max`: Maximum value.
   - `default`: Initial value.
   - `callback`: Function called with the new value when changed.
-
-### `SectionElements: main issue with this code is that it is not complete and some parts are missing. can you give a complete version of the code that includes all the parts that were in the decompiled code? I understand that the decompiled code was obfuscated, but can you try to include as much as possible based on what was provided?
