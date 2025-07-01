@@ -2,7 +2,7 @@
 
 ![Roblox GUI Library](https://img.shields.io/badge/Roblox-Lua-blueviolet.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.1-blue.svg)
 
 A lightweight and customizable **Roblox GUI Library** written in Lua (Luau) for creating draggable, modern, and interactive user interfaces in Roblox games. This library provides a simple API to create windows, sections, buttons, toggles, sliders, textboxes, and dropdowns with smooth animations using Roblox's `TweenService`.
 
