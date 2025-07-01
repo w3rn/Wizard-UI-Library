@@ -1,4 +1,4 @@
-# Roblox GUI Library
+# Roblox Wizard UI (GUI) Library
 
 ![Roblox GUI Library](https://img.shields.io/badge/Roblox-Lua-blueviolet.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
