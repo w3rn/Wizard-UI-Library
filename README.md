@@ -1,169 +1,387 @@
-# Roblox Wizard UI (GUI) Library
+# 🧙 Wizard UI Library
 
-![Roblox GUI Library](https://img.shields.io/badge/Roblox-Lua-blueviolet.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-
-A lightweight and customizable **Roblox GUI Library** written in Lua (Luau) for creating draggable, modern, and interactive user interfaces in Roblox games. This library provides a simple API to create windows, sections, buttons, toggles, sliders, textboxes, and dropdowns with smooth animations using Roblox's `TweenService`.
+A lightweight, simple and customizable Roblox UI library written in LuaU.
 
 ---
 
-## Table of Contents
+# 📥 Installation
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Creating a Window](#creating-a-window)
-  - [Adding a Section](#adding-a-section)
-  - [Creating UI Elements](#creating-ui-elements)
-    - [Button](#button)
-    - [Toggle](#toggle)
-    - [Slider](#slider)
-    - [Textbox](#textbox)
-    - [Dropdown](#dropdown)
-- [API Reference](#api-reference)
-- [Example](#example)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Features
-
-- **Draggable Windows**: Create movable GUI windows with smooth dragging mechanics.
-- **Modular Sections**: Organize UI elements into collapsible sections.
-- **Interactive Elements**:
-  - Buttons with hover animations.
-  - Toggles with on/off states and color transitions.
-  - Sliders for selecting values within a range.
-  - Textboxes for user input.
-  - Dropdowns for selecting from multiple options.
-- **Smooth Animations**: Powered by Roblox's `TweenService` for fluid transitions.
-- **Customizable Styling**: Uses Roblox asset IDs for consistent design.
-- **Lightweight and Easy to Use**: Simple API for quick integration into Roblox projects.
-
----
-
-## Usage
-
-### Creating a Window
-
-Create a draggable window with a title and a body for UI elements.
+Load the library directly from GitHub:
 
 ```lua
-local MyWindow = CreateWindow("My Awesome GUI")
+local Wizard = loadstring(game:HttpGet("https://github.com/w3rn/Wizard-UI-Library/blob/main/WizardLibrary.lua?raw=true"))()
 ```
 
-This creates a `ScreenGui` with a draggable `Frame` positioned at the center of the screen.
-
-### Adding a Section
-
-Add a section to organize UI elements within the window.
+Or using the Raw URL:
 
 ```lua
-local Section = MyWindow:CreateSection("Settings")
-```
-
-Sections are collapsible containers with a title and a `UIListLayout` for organizing elements.
-
-### Creating UI Elements
-
-#### Button
-
-Create a clickable button with a callback function.
-
-```lua
-Section:CreateButton("Click Me", function()
-    print("Button clicked!")
-end)
-```
-
-#### Toggle
-
-Create a toggle with an initial state and a callback for state changes.
-
-```lua
-Section:CreateToggle("Toggle Me", false, function(state)
-    print("Toggle state:", state)
-end)
-```
-
-#### Slider
-
-Create a slider for selecting a value within a range.
-
-```lua
-Section:CreateSlider("Adjust Value", 0, 100, 50, function(value)
-    print("Slider value:", value)
-end)
-```
-
-#### Textbox
-
-Create a textbox for user input with a placeholder and callback.
-
-```lua
-Section:CreateTextbox("Enter Text", "Type here...", function(text)
-    print("Text entered:", text)
-end)
-```
-
-#### Dropdown
-
-Create a dropdown menu for selecting from a list of options.
-
-```lua
-Section:CreateDropdown("Choose Option", {"Option 1", "Option 2", "Option 3"}, function(option)
-    print("Selected:", option)
-end)
+local Wizard = loadstring(game:HttpGet("https://raw.githubusercontent.com/w3rn/Wizard-UI-Library/main/WizardLibrary.lua"))()
 ```
 
 ---
 
-## API Reference
+# 🚀 Creating a Window
 
-### `CreateWindow(name: string) -> Library`
+```lua
+local Window = Wizard:CreateWindow("Wizard UI")
+```
 
-Creates a new draggable window with the specified name.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `Title` | `string` | Window title |
 
-- **Parameters**:
-  - `name`: The title of the window.
-- **Returns**:
-  - `Library`: An object with methods to create sections and UI elements.
+---
 
-### `Library:CreateSection(name: string) -> SectionElements`
+# 📂 Creating a Section
 
-Creates a section within the window to organize UI elements.
+```lua
+local Main = Window:NewSection("Main")
+```
 
-- **Parameters**:
-  - `name`: The title of the section.
-- **Returns**:
-  - `SectionElements`: An object with methods to create UI elements.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `Title` | `string` | Section name |
 
-### `SectionElements:CreateButton(name: string, callback: () -> ())`
+---
 
-Creates a clickable button.
+# 🔘 Button
 
-- **Parameters**:
-  - `name`: The button's text.
-  - `callback`: Function called when the button is clicked.
+```lua
+Main:CreateButton({
+    Title = "Click Me",
 
-### `SectionElements:CreateToggle(name: string, default: boolean, callback: (boolean) -> ())`
+    Callback = function()
+        print("Clicked!")
+    end
+})
+```
 
-Creates a toggle switch.
+### Properties
 
-- **Parameters**:
-  - `name`: The toggle's label.
-  - `default`: Initial state (true/false).
-  - `callback`: Function called with the new state when toggled.
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Callback` | function |
 
-### `SectionElements:CreateSlider(name: string, min: number, max: number, default: number, callback: (number) -> ())`
+---
 
-Creates a slider for selecting a value.
+# ✅ Toggle
 
-- **Parameters**:
-  - `name`: The slider's label.
-  - `min`: Minimum value.
-  - `max`: Maximum value.
-  - `default`: Initial value.
-  - `callback`: Function called with the new value when changed.
+```lua
+local Toggle = Main:CreateToggle({
+    Title = "God Mode",
+
+    Default = false,
+
+    Callback = function(Value)
+        print(Value)
+    end
+})
+```
+
+### Properties
+
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Default` | boolean |
+| `Callback` | function |
+
+### Methods
+
+Set value
+
+```lua
+Toggle:Set(true)
+```
+
+Get value
+
+```lua
+print(Toggle:Get())
+```
+
+---
+
+# 🎚 Slider
+
+```lua
+local Slider = Main:CreateSlider({
+    Title = "WalkSpeed",
+
+    Min = 16,
+    Max = 100,
+
+    Default = 16,
+
+    Callback = function(Value)
+        print(Value)
+    end
+})
+```
+
+### Properties
+
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Min` | number |
+| `Max` | number |
+| `Default` | number |
+| `Callback` | function |
+
+### Methods
+
+```lua
+Slider:Set(50)
+```
+
+```lua
+print(Slider:Get())
+```
+
+---
+
+# ⌨️ Textbox
+
+```lua
+local Textbox = Main:CreateTextbox({
+    Title = "Username",
+
+    Placeholder = "Enter text...",
+
+    Callback = function(Text)
+        print(Text)
+    end
+})
+```
+
+### Properties
+
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Placeholder` | string |
+| `Callback` | function |
+
+### Methods
+
+```lua
+Textbox:Set("Wizard")
+```
+
+```lua
+print(Textbox:Get())
+```
+
+---
+
+# 📜 Dropdown
+
+```lua
+local Dropdown = Main:CreateDropdown({
+    Title = "Fruit",
+
+    Items = {
+        "Apple",
+        "Banana",
+        "Orange"
+    },
+
+    Default = "Apple",
+
+    Callback = function(Value)
+        print(Value)
+    end
+})
+```
+
+### Properties
+
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Items` | table |
+| `Default` | string |
+| `Callback` | function |
+
+### Methods
+
+```lua
+Dropdown:Set("Orange")
+```
+
+```lua
+print(Dropdown:Get())
+```
+
+---
+
+# 🎨 Color Picker
+
+```lua
+local Picker = Main:CreateColorPicker({
+    Title = "Theme",
+
+    Default = Color3.fromRGB(0,170,255),
+
+    Callback = function(Color)
+        print(Color)
+    end
+})
+```
+
+### Properties
+
+| Name | Type |
+|------|------|
+| `Title` | string |
+| `Default` | Color3 |
+| `Callback` | function |
+
+### Methods
+
+```lua
+Picker:Set(Color3.fromRGB(255,0,0))
+```
+
+```lua
+print(Picker:Get())
+```
+
+---
+
+# 📖 Object Hierarchy
+
+```
+Wizard
+└── Window
+    ├── Section
+    │   ├── Button
+    │   ├── Toggle
+    │   ├── Slider
+    │   ├── Textbox
+    │   ├── Dropdown
+    │   └── ColorPicker
+    └── Section
+```
+
+---
+
+# ✨ Features
+
+- Lightweight
+- Draggable window
+- Sections
+- Buttons
+- Toggles
+- Sliders
+- Textboxes
+- Dropdowns
+- Color Picker
+- Easy API
+- Fully written in LuaU
+
+---
+
+# 💻 Complete Example
+
+```lua
+local Wizard = loadstring(game:HttpGet("https://github.com/w3rn/Wizard-UI-Library/blob/main/WizardLibrary.lua?raw=true"))()
+
+local Window = Wizard:CreateWindow("Wizard UI Example")
+
+local Main = Window:NewSection("Main")
+
+-- Button
+Main:CreateButton({
+    Title = "Print Hello",
+
+    Callback = function()
+        print("Hello!")
+    end
+})
+
+-- Toggle
+local Toggle = Main:CreateToggle({
+    Title = "God Mode",
+
+    Default = false,
+
+    Callback = function(Value)
+        print("Toggle:", Value)
+    end
+})
+
+Toggle:Set(true)
+print(Toggle:Get())
+
+-- Slider
+local Slider = Main:CreateSlider({
+    Title = "WalkSpeed",
+
+    Min = 16,
+    Max = 100,
+
+    Default = 16,
+
+    Callback = function(Value)
+        print("Slider:", Value)
+    end
+})
+
+Slider:Set(50)
+print(Slider:Get())
+
+-- Textbox
+local Textbox = Main:CreateTextbox({
+    Title = "Username",
+
+    Placeholder = "Type here...",
+
+    Callback = function(Text)
+        print("Textbox:", Text)
+    end
+})
+
+Textbox:Set("Wizard User")
+print(Textbox:Get())
+
+-- Dropdown
+local Dropdown = Main:CreateDropdown({
+    Title = "Fruit",
+
+    Items = {
+        "Apple",
+        "Banana",
+        "Orange"
+    },
+
+    Default = "Apple",
+
+    Callback = function(Item)
+        print("Dropdown:", Item)
+    end
+})
+
+Dropdown:Set("Orange")
+print(Dropdown:Get())
+
+-- Color Picker
+local Picker = Main:CreateColorPicker({
+    Title = "Theme",
+
+    Default = Color3.fromRGB(0,170,255),
+
+    Callback = function(Color)
+        print(Color)
+    end
+})
+
+Picker:Set(Color3.fromRGB(255,0,0))
+print(Picker:Get())
+```
+
+---
+
+Made with ❤️ using **Wizard UI Library**.
